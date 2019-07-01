@@ -2,6 +2,7 @@ import requests
 import re
 import pickle
 import time
+import datetime
 
 requests.packages.urllib3.disable_warnings() 
 
@@ -50,22 +51,23 @@ def getBTC():
     
     return format(float(result[0][:-1]),'.2f')
 
-def writeToFile(inputList):
+def writeToFile(inputList, lastTime):
     with open('changeData.data', 'wb') as filehandle:  
         pickle.dump(inputList, filehandle)
+        pickle.dump(lastTime, filehandle)
 
 def readFile():
     with open('changeData.data', 'rb') as filehandle:  
         outputList = pickle.load(filehandle)
-    
-    return outputList
+        lastTime = pickle.load(filehandle)
+    return outputList, lastTime
 
 '''
 print("BitCoin Change: " + str(getBTC()) + '%')
 print("Top 100 coins average: " + str(getTop100()) + '%')
 print(str(getAll()[1]) + " coins average: " + str(getAll()[0]) + '%')
-
 '''
+
 try:
     changeList = readFile()
 except:
@@ -76,6 +78,7 @@ while(True):
     changeList.append((getBTC(),getTop10(),getTop100(), getAll()))
     temp += 1
     print(str(temp))
-    writeToFile(changeList)
+    writeToFile(changeList, datetime.datetime.now())
     
     time.sleep(15)
+

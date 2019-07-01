@@ -1,13 +1,31 @@
 import matplotlib.pyplot as plt
 import pickle
+import datetime
 
+'''
 def readFile():
     with open('changeData.data', 'rb') as filehandle:  
         outputList = pickle.load(filehandle)
-    
+        lastTime = pickle.load(filehandle)
+    return outputList, lastTime
+'''
+def readFile():
+    with open('changeData.data', 'rb') as filehandle:  
+        outputList = pickle.load(filehandle)
+        
     return outputList
 
+#testList, lastTime = readFile()
 testList = readFile()
+lastTime = datetime.datetime.now()
+
+def defineY(testList,lastTime):
+    y_val = []
+    
+    for i in range(len(testList)):
+        y_val.append(lastTime - datetime.timedelta(seconds=i*15))
+    
+    return y_val
 
 def side_values(num_list):
     results_list = sorted(num_list)
@@ -44,8 +62,7 @@ x3_val = [float(x[2]) for x in testList]
 x4_val = [float(x[3][0]) for x in testList]
 y_val = []
 
-for i in range(len(testList)):
-    y_val.append(i)
+y_val = defineY(testList, lastTime)
 
 plt.plot(y_val,x1_val, label = "BTC")
 
@@ -56,11 +73,12 @@ plt.plot(y_val,x3_val, label = "Top 100 Coins by MarketCap")
 name = str(testList[0][3][1]) + " Coins"
 plt.plot(y_val,x4_val, label = name)
 
-plt.suptitle('24 hr Percent Change Over Time', fontsize=20)
-plt.xlabel('Time (15 * x seconds)', fontsize=18)
-plt.ylabel('Percent Change', fontsize=16)
+plt.suptitle('24 hr Percent Change Over Time', fontsize=14)
+plt.xlabel('Time (15 * x seconds)', fontsize=12)
+plt.ylabel('Percent Change', fontsize=12)
 
 plt.legend()
-plt.savefig('differences.png')
+
+plt.savefig('differences.jpg', dpi = 100)
 
 
