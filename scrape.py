@@ -6,7 +6,7 @@ import time
 requests.packages.urllib3.disable_warnings() 
 
 pattern = re.compile('<tr id.*?</tr>',re.DOTALL)
-patter2 = re.compile('class="price" data-usd=\".*?\"')
+pattern2 = re.compile('class="price" data-usd=\".*?\"')
 pattern3 = re.compile('\d+.\d+')
 pattern4 = re.compile('[-|\d]+\.\d+%')
 
