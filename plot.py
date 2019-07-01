@@ -58,20 +58,10 @@ y_val = []
 
 y_val = defineY(testList, lastTime)
 
-plt.plot(y_val,x1_val, label = "BTC")
-
-plt.plot(y_val,x2_val, label = "Top 10 Coins by MarketCap")
-
-plt.plot(y_val,x3_val, label = "Top 100 Coins by MarketCap")
-
-name = str(testList[0][3][1]) + " Coins"
-plt.plot(y_val,x4_val, label = name)
+fig, ax = plt.subplots()
 
 plt.suptitle('24 hr Percent Change Over Time', fontsize=14)
-#plt.xlabel('Time', fontsize=12)
 plt.ylabel('Percent Change', fontsize=12)
-
-fig, ax = plt.subplots()
 
 ax.plot(y_val,x1_val, label = "BTC")
 
