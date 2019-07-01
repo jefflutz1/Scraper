@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pickle
 import datetime
-
+import matplotlib.dates as mdates
 
 def readFile():
     with open('changeData.data', 'rb') as filehandle:  
@@ -70,6 +70,21 @@ plt.plot(y_val,x4_val, label = name)
 plt.suptitle('24 hr Percent Change Over Time', fontsize=14)
 #plt.xlabel('Time', fontsize=12)
 plt.ylabel('Percent Change', fontsize=12)
+
+fig, ax = plt.subplots()
+
+ax.plot(y_val,x1_val, label = "BTC")
+
+ax.plot(y_val,x2_val, label = "Top 10 Coins by MarketCap")
+
+ax.plot(y_val,x3_val, label = "Top 100 Coins by MarketCap")
+
+name = str(testList[0][3][1]) + " Coins"
+ax.plot(y_val,x4_val, label = name)
+
+ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
+ax.xaxis.set_minor_formatter(mdates.DateFormatter("%H:%M"))
+#_=plt.xticks(rotation=90) 
 
 plt.legend()
 
