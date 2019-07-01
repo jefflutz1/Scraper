@@ -2,29 +2,22 @@ import matplotlib.pyplot as plt
 import pickle
 import datetime
 
-'''
+
 def readFile():
     with open('changeData.data', 'rb') as filehandle:  
         outputList = pickle.load(filehandle)
         lastTime = pickle.load(filehandle)
     return outputList, lastTime
-'''
-def readFile():
-    with open('changeData.data', 'rb') as filehandle:  
-        outputList = pickle.load(filehandle)
-        
-    return outputList
 
-#testList, lastTime = readFile()
-testList = readFile()
-lastTime = datetime.datetime.now()
+testList, lastTime = readFile()
 
 def defineY(testList,lastTime):
     y_val = []
     
     for i in range(len(testList)):
         y_val.append(lastTime - datetime.timedelta(seconds=i*15))
-    
+        
+    y_val.reverse()
     return y_val
 
 def side_values(num_list):
@@ -60,6 +53,7 @@ x1_val = [float(x[0]) for x in testList]
 x2_val = [float(x[1]) for x in testList]
 x3_val = [float(x[2]) for x in testList]
 x4_val = [float(x[3][0]) for x in testList]
+
 y_val = []
 
 y_val = defineY(testList, lastTime)
@@ -74,7 +68,7 @@ name = str(testList[0][3][1]) + " Coins"
 plt.plot(y_val,x4_val, label = name)
 
 plt.suptitle('24 hr Percent Change Over Time', fontsize=14)
-plt.xlabel('Time (15 * x seconds)', fontsize=12)
+#plt.xlabel('Time', fontsize=12)
 plt.ylabel('Percent Change', fontsize=12)
 
 plt.legend()
