@@ -49,9 +49,9 @@ for i in range(len(testList)):
 
 plt.plot(y_val,x1_val, label = "BTC")
 
-plt.plot(y_val,x2_val, label = "Top 10 Coins")
+plt.plot(y_val,x2_val, label = "Top 10 Coins by MarketCap")
 
-plt.plot(y_val,x3_val, label = "Top 100 Coins")
+plt.plot(y_val,x3_val, label = "Top 100 Coins by MarketCap")
 
 name = str(testList[0][3][1]) + " Coins"
 plt.plot(y_val,x4_val, label = name)

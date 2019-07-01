@@ -59,6 +59,7 @@ def readFile():
         outputList = pickle.load(filehandle)
     
     return outputList
+
 '''
 print("BitCoin Change: " + str(getBTC()) + '%')
 print("Top 100 coins average: " + str(getTop100()) + '%')
