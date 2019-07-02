@@ -72,12 +72,12 @@ ax.plot(y_val,x3_val, label = "Top 100 Coins by MarketCap")
 name = str(testList[0][3][1]) + " Coins"
 ax.plot(y_val,x4_val, label = name)
 
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.1), ncol=2)
+
 ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
 ax.xaxis.set_minor_formatter(mdates.DateFormatter("%H:%M"))
 #_=plt.xticks(rotation=90) 
 
-plt.legend()
-
-plt.savefig('differences.jpg', dpi = 100)
+plt.savefig('differences.png', dpi = 100)
 
 
