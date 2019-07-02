@@ -78,6 +78,6 @@ ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
 ax.xaxis.set_minor_formatter(mdates.DateFormatter("%H:%M"))
 #_=plt.xticks(rotation=90) 
 
-plt.savefig('differences.png', dpi = 100)
+plt.savefig('differences.jpg', dpi = 100)
 
 
