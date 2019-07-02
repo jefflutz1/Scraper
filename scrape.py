@@ -59,8 +59,7 @@ def writeToFile(inputList, lastTime):
 def readFile():
     with open('changeData.data', 'rb') as filehandle:  
         outputList = pickle.load(filehandle)
-        lastTime = pickle.load(filehandle)
-    return outputList, lastTime
+    return outputList
 
 '''
 print("BitCoin Change: " + str(getBTC()) + '%')
@@ -70,6 +69,13 @@ print(str(getAll()[1]) + " coins average: " + str(getAll()[0]) + '%')
 
 try:
     changeList = readFile()
+    '''
+    changeList = changeList[:-1]
+    tempList = []
+    for i in changeList:
+        tempList.append(i)
+    changeList = tempList
+    '''
 except:
     changeList = []
 
@@ -79,6 +85,5 @@ while(True):
     temp += 1
     print(str(temp))
     writeToFile(changeList, datetime.datetime.now())
-    
     time.sleep(15)
 
