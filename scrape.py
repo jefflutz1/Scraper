@@ -51,10 +51,9 @@ def getBTC():
     
     return format(float(result[0][:-1]),'.2f')
 
-def writeToFile(inputList, lastTime):
+def writeToFile(inputList):
     with open('changeData.data', 'wb') as filehandle:  
         pickle.dump(inputList, filehandle)
-        pickle.dump(lastTime, filehandle)
 
 def readFile():
     with open('changeData.data', 'rb') as filehandle:  
@@ -69,25 +68,19 @@ print(str(getAll()[1]) + " coins average: " + str(getAll()[0]) + '%')
 
 try:
     changeList = readFile()
-    '''
-    changeList = changeList[:-1]
-    tempList = []
-    for i in changeList:
-        tempList.append(i)
-    changeList = tempList
-    '''
+
 except:
     changeList = []
 
 temp = 0
 while(True): 
     try:
-        changeList.append((getBTC(),getTop10(),getTop100(), getAll()))
+        changeList.append((getBTC(),getTop10(),getTop100(), getAll(), datetime.datetime.now()))
         temp += 1
         print(str(temp))
     except:
-        print("Some type of error, probably no response")
+        print("Some error, probably no response from server")
         
-    writeToFile(changeList, datetime.datetime.now())
+    writeToFile(changeList)
     time.sleep(15)
 

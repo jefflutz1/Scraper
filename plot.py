@@ -6,10 +6,9 @@ import matplotlib.dates as mdates
 def readFile():
     with open('changeData.data', 'rb') as filehandle:  
         outputList = pickle.load(filehandle)
-        lastTime = pickle.load(filehandle)
-    return outputList, lastTime
+    return outputList
 
-testList, lastTime = readFile()
+testList = readFile()
 
 def defineY(testList,lastTime):
     y_val = []
@@ -20,6 +19,7 @@ def defineY(testList,lastTime):
     y_val.reverse()
     return y_val
 
+    
 def side_values(num_list):
     results_list = sorted(num_list)
     return results_list[0], results_list[-1]
@@ -54,9 +54,7 @@ x2_val = [float(x[1]) for x in testList]
 x3_val = [float(x[2]) for x in testList]
 x4_val = [float(x[3][0]) for x in testList]
 
-y_val = []
-
-y_val = defineY(testList, lastTime)
+y_val = [x[4] for x in testList]
 
 fig, ax = plt.subplots()
 
