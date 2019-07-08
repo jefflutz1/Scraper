@@ -81,9 +81,13 @@ except:
 
 temp = 0
 while(True): 
-    changeList.append((getBTC(),getTop10(),getTop100(), getAll()))
-    temp += 1
-    print(str(temp))
+    try:
+        changeList.append((getBTC(),getTop10(),getTop100(), getAll()))
+        temp += 1
+        print(str(temp))
+    except:
+        print("Some type of error, probably no response")
+        
     writeToFile(changeList, datetime.datetime.now())
     time.sleep(15)
 
